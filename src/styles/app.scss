@@ -1,0 +1,180 @@
+@import "mixin.scss";
+@import "dashboard.scss";
+@import "loader.scss";
+@import "products.scss";
+@import "charts.scss";
+@import "dashboardApp.scss";
+@import "mediaQueries.scss";
+:root {
+	font-family: Inter, system-ui, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+}
+// UNIVERSAL CSS
+// =============
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: whitesmoke;
+}
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+// COLORS CLASSES
+// ==============
+.red {
+	color: red;
+}
+.purple {
+	color: rgb(192, 15, 228);
+}
+.green {
+	color: rgb(0, 195, 0);
+}
+
+// NORMAL CLASSES
+// ==============
+.adminContainer {
+	@include grid(1fr 4fr, 2rem);
+	height: 100vh;
+	> aside {
+		@include customScrollbar(none);
+		position: relative;
+		width: 100%;
+		background-color: white;
+		padding: 1rem;
+		z-index: 10;
+		overflow-y: auto;
+		> section {
+			margin: 1rem;
+			> h5 {
+				@include heading(2px);
+				opacity: 0.8;
+				margin: 0.5rem 0rem;
+			}
+			> ul {
+				@include flex(column, unset, unset, 0.5rem);
+				> li {
+					border-radius: 10px;
+					padding: 0.5rem 1rem;
+					> a {
+						@include flex(row, unset);
+					}
+				}
+			}
+		}
+	}
+}
+// REACT TABLE
+// ===========
+.reactTable {
+	border-collapse: collapse;
+	width: 100%;
+	th,
+	td {
+		padding: 0.5rem;
+		text-align: left;
+		vertical-align: middle;
+	}
+	th {
+		font-weight: bold;
+		color: #0000009e;
+		font-size: 1.1rem;
+		font-weight: 400;
+		padding: 2rem 1rem;
+	}
+	tbody {
+		tr {
+			box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.093);
+		}
+		td {
+			padding: 1rem;
+			img {
+				@include square(4rem);
+				object-fit: contain;
+				border-radius: 10px;
+			}
+			a {
+				text-decoration: none;
+				background-color: rgba(44, 104, 255, 0.455);
+				color: rgba(44, 104, 255);
+				padding: 0.25rem 0.5rem;
+				border-radius: 10px;
+			}
+			button {
+				width: 2rem;
+				height: 2rem;
+				font-size: 1.1rem;
+				border: none;
+				outline: none;
+				background-color: transparent;
+				cursor: pointer;
+				color: rgb(255, 44, 44);
+				&:hover {
+					opacity: 0.6;
+				}
+			}
+			&:first-child {
+				border-left: none;
+			}
+			&:last-child {
+				border-right: none;
+			}
+		}
+	}
+}
+// REACT TABLE BACKGROUND PROPERTIES FOR ALL PLACES EXCEPT DASHBOARD WIDGET
+.reactTableBox {
+	@include square(100%);
+	background-color: white;
+	padding: 1rem;
+	padding-bottom: 0;
+	overflow: auto;
+}
+// REACT TABLE PAGINATION
+// ======================
+.tablePagination {
+	@include flex;
+	padding: 2rem;
+	> button {
+		padding: 0.5rem 1rem;
+		border: none;
+		outline: none;
+		border-radius: 10px;
+		cursor: pointer;
+		background-color: rgba(0, 115, 255);
+		color: white;
+		&:disabled {
+			background-color: rgba(0, 115, 255, 0.1);
+			cursor: not-allowed;
+		}
+	}
+}
+#hamburgerButton {
+	@include square(3rem);
+	@include button(none, 0rem, rgb(8, 74, 240), white, whitesmoke, 2rem, 50%);
+	display: grid;
+	place-items: center;
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+	z-index: 9;
+}
+
+#hamburgerCancel {
+	@include square(3rem);
+	@include button(none, 0rem, rgb(8, 74, 240), white, white, 1.7rem, 50%);
+	display: grid;
+	place-items: center;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	z-index: 9;
+}
